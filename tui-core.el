@@ -657,6 +657,8 @@ form.
 3. All `tui-element' nodes contain (in :content slot) a list of
 `tui-node' objects (zero or more)."
   (cond
+   ((widgetp node)
+    node)
    ((tui-text-node-p node)
     ;; TODO: check that content is a primitive
     node)
@@ -687,6 +689,8 @@ form.
 Return value is always a list."
   (-non-nil
    (cond
+    ((widgetp content)
+     content)
     ((tui--list-content-p content)
      (mapcar #'tui--normalize-node content))
     (content
